@@ -15,9 +15,14 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this , LoginPhoneNumberActivity.class));
+                if(FirebaseUtil.IsLoggedIn()){
+                    startActivity(new Intent(SplashActivity.this , MainActivity.class));
+                }else {
+                    startActivity(new Intent(SplashActivity.this , LoginPhoneNumberActivity.class));
+                }
                 finish();
+
             }
-        } , 3000);
+        } , 1500);
     }
 }

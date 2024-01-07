@@ -34,6 +34,7 @@ public class LoginPhoneNumberActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
 
         codePicker.registerCarrierNumberEditText(phoneInput);
+        codePicker.setCountryForPhoneCode(84);
         sendOTPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

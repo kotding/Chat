@@ -84,8 +84,7 @@
             android:elevation="5dp"
             android:hint="Enter your name..."
             android:gravity="center"
-            android:inputType="numberDecimal"
-            android:maxLength="6"
+            android:maxLength="16"
             android:textSize="20dp"
             android:id="@+id/login_username"/>
     </LinearLayout>
@@ -103,6 +102,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:id="@+id/login_let_me_btn"/>
+        <ProgressBar
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/login_progress_bar"/>
 
     </LinearLayout>
 
