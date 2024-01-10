@@ -37,26 +37,52 @@
 
     </RelativeLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/main_toolbar"
-        android:id="@+id/main_frame_layout">
+        android:id="@+id/search_user_layout">
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:id="@+id/divider"
-            android:layout_below="@id/bottom_navigation" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:id="@+id/bottom_navigation"
-            app:menu="@menu/bottom_navigation_menu"
-            android:layout_gravity="bottom" />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_rounded_corner"
+            android:elevation="4dp"
+            android:hint="Username"
+            android:padding="10dp"
+            android:id="@+id/search_username_input"
+            android:layout_toLeftOf="@id/search_user_btn"
+            android:shadowColor="@color/black" />
 
-    </FrameLayout>
+        <ImageButton
+            android:id="@+id/search_user_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/icon_search" />
+
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_user_layout"
+        android:padding="10dp"
+        android:id="@+id/search_recycle_view"/>
+
+
+
+
+
 
 </RelativeLayout>
