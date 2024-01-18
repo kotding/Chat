@@ -64,7 +64,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
         setInProgress(true);
         if(userModel == null)
         {
-            userModel = new UserModel(phoneNumber , usernameInput.getText().toString() , Timestamp.now());
+            userModel = new UserModel(FirebaseUtil.CurrentUserId(),phoneNumber , usernameInput.getText().toString() , Timestamp.now());
         }else
         {
             userModel.setUsername(usernameInput.getText().toString());

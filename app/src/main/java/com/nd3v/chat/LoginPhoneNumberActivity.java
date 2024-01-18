@@ -38,7 +38,7 @@ public class LoginPhoneNumberActivity extends AppCompatActivity {
         sendOTPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!codePicker.isValidFullNumber())
+                if(false)
                 {
                     phoneInput.setError("Phone number not valid !");
                     return;

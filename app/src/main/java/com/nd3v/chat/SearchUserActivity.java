@@ -10,7 +10,6 @@ import android.widget.ImageButton;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.auth.User;
 import com.nd3v.chat.adapter.SearchUserRecycleAdapter;
 import com.nd3v.chat.model.UserModel;
 
@@ -28,7 +27,7 @@ public class SearchUserActivity extends AppCompatActivity {
 
         searchBtn = findViewById(R.id.search_user_btn);
         searchUserInput = findViewById(R.id.search_username_input);
-        backBtn = findViewById(R.id.back_btn);
+        backBtn = findViewById(R.id.chat_back_btn);
         recyclerView = findViewById(R.id.search_recycle_view);
         searchUserInput.requestFocus();
         backBtn.setOnClickListener(v ->
@@ -39,7 +38,7 @@ public class SearchUserActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(v ->
         {
             String searchTerm = searchUserInput.getText().toString();
-            if(searchTerm.isEmpty()|| searchTerm.length() < 3){
+            if(searchTerm.isEmpty()){
                 searchUserInput.setError("Invalid username");
                 return;
             }
@@ -49,8 +48,9 @@ public class SearchUserActivity extends AppCompatActivity {
     }
     void setupSearchRecycleView(String searchTerm){
 
-        Query query = FirebaseUtil.AllUserReferences().whereGreaterThan("username",searchTerm);
+        Query query = FirebaseUtil.AllUserReferences().whereGreaterThanOrEqualTo("username",searchTerm).orderBy("username", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>().setQuery(query, UserModel.class).build();
+
         adapter = new SearchUserRecycleAdapter(options,getApplicationContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

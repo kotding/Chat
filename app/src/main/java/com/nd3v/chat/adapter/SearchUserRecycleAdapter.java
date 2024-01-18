@@ -1,6 +1,7 @@
 package com.nd3v.chat.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.nd3v.chat.AndroidUtil;
+import com.nd3v.chat.ChatActivity;
+import com.nd3v.chat.FirebaseUtil;
 import com.nd3v.chat.R;
 import com.nd3v.chat.model.UserModel;
 
@@ -26,8 +30,18 @@ public class SearchUserRecycleAdapter extends FirestoreRecyclerAdapter<UserModel
     @Override
     protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
         holder.usernameTextView.setText(model.getUsername());
+        if(model.getUserId().equals(FirebaseUtil.CurrentUserId()))
+        {
+            holder.usernameTextView.setText((holder.usernameTextView.getText().toString()+ " (Me)"));
+        }
         holder.phoneTextView.setText(model.getPhone());
-
+        holder.itemView.setOnClickListener(v ->
+        {
+                Intent intent = new Intent(context , ChatActivity.class);
+                AndroidUtil.passUserModeAsIntent(intent,model);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+        });
     }
 
     @NonNull
