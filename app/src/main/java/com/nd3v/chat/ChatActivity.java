@@ -1,19 +1,35 @@
 package com.nd3v.chat;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.firestore.SnapshotParser;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.nd3v.chat.adapter.ChatRecycleAdapter;
 import com.nd3v.chat.model.ChatMessageModel;
 import com.nd3v.chat.model.ChatRoomModel;
 import com.nd3v.chat.model.UserModel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +38,7 @@ public class ChatActivity extends AppCompatActivity {
     UserModel otherUser;
     String chatRoolId;
     ChatRoomModel chatRoomModel;
-
+    ChatRecycleAdapter adapter;
     EditText messengeInput;
     Button sendBtn;
     ImageButton backBtn;
@@ -52,6 +68,7 @@ public class ChatActivity extends AppCompatActivity {
             if(mess.length() == 0) return;
             sendMessageToChatRoom(mess);
         });
+        setChatRecycleView();
     }
     private  void sendMessageToChatRoom(String message)
     {
@@ -88,5 +105,33 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    void setChatRecycleView()
+    {
+        Log.i("DEBUG", "Chat room id" + chatRoolId);
+
+        Query query = FirebaseUtil.getChatRoomMessageReference(chatRoolId)
+                .orderBy("timeStamp" , Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>()
+                .setQuery(query , ChatMessageModel.class).build();
+        adapter = new ChatRecycleAdapter(options , getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        FirebaseUtil.getChatRoomMessageReference(chatRoolId).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                recyclerView.smoothScrollToPosition(0);
+            }
+        });
+        //adapter.startListening();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adapter.UploadAvatarActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MEOW !"
+        android:fontFamily="monospace"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textSize="35sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Whelcome to private chat"
+        android:fontFamily="monospace"
+        android:textColor="#5A5656"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="90dp"
+        android:textStyle="bold"
+        android:textSize="25sp"/>
+
+    <ImageView
+        android:id="@+id/upload_avatar_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/cat"
+        android:tooltipText="Choose your avatar"
+        android:translationY="-10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upload_avatar_img"
+        android:text="Your display avatar"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="monospace"
+        android:translationY="-10dp"/>
+    <Button
+        android:id="@+id/btn_upload_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upload_avatar_img"
+        android:text="Choose avatar"
+        android:fontFamily="monospace"
+        android:translationY="80dp"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

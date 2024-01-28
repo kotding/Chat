@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.nd3v.chat.adapter.UploadAvatarActivity;
 import com.nd3v.chat.model.UserModel;
 
 public class LoginUsernameActivity extends AppCompatActivity {
@@ -75,7 +76,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
                 setInProgress(false);
                 if(task.isSuccessful())
                 {
-                    Intent intent = new Intent(LoginUsernameActivity.this , MainActivity.class);
+                    Intent intent = new Intent(LoginUsernameActivity.this , UploadAvatarActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }

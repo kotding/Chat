@@ -5,6 +5,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class FirebaseUtil
 {
@@ -43,5 +45,19 @@ public class FirebaseUtil
             return userId2 + "_" + userId1;
         }
 
+    }
+    public  static FirebaseStorage getFirebaseStorageInstance()
+    {
+        return FirebaseStorage.getInstance();
+    }
+
+    public  static StorageReference getFirebaseRef()
+    {
+        return getFirebaseStorageInstance().getReference();
+    }
+
+    public  static  StorageReference getAvatarStorageRef()
+    {
+        return getFirebaseRef().child("avatars");
     }
 }

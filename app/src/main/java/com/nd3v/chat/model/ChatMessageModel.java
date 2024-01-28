@@ -6,7 +6,7 @@ public class ChatMessageModel {
     String message;
     String senderId;
     Timestamp timeStamp;
-
+    public  ChatMessageModel(){}
     public ChatMessageModel(String message, String senderId, Timestamp timeStamp) {
         this.message = message;
         this.senderId = senderId;

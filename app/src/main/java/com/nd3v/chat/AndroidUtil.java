@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.nd3v.chat.model.UserModel;
 
 public class AndroidUtil {
@@ -26,4 +28,6 @@ public class AndroidUtil {
         UserModel user = new UserModel(userId , phone , userName , null);
         return user;
     }
+
+
 }
