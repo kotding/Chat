@@ -30,7 +30,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_username);
         phoneNumber = getIntent().getExtras().getString("phone");
         setUp();
-        getUsername();
+        //getUsername();
         setInProgress(false);
     }
 
@@ -70,18 +70,12 @@ public class LoginUsernameActivity extends AppCompatActivity {
         {
             userModel.setUsername(usernameInput.getText().toString());
         }
-        FirebaseUtil.CurrentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                setInProgress(false);
-                if(task.isSuccessful())
-                {
-                    Intent intent = new Intent(LoginUsernameActivity.this , UploadAvatarActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-            }
-        });
+        Intent intent = new Intent(LoginUsernameActivity.this , UploadAvatarActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("USER_NAME" , userModel.getUsername());
+        intent.putExtra("PHONE" , phoneNumber);
+        startActivity(intent);
+
     }
     private  void getUsername()
     {

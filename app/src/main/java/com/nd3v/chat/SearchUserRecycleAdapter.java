@@ -2,6 +2,9 @@ package com.nd3v.chat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.nd3v.chat.model.UserModel;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 
 public class SearchUserRecycleAdapter extends FirestoreRecyclerAdapter<UserModel,SearchUserRecycleAdapter.UserModelViewHolder> {
 
@@ -28,6 +37,9 @@ public class SearchUserRecycleAdapter extends FirestoreRecyclerAdapter<UserModel
     protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
         holder.usernameText.setText(model.getUsername());
         holder.phoneText.setText(model.getPhone());
+        Picasso.with(holder.profilePic.getContext()).load(Uri.parse(model.getAvatarUrl())).into(holder.profilePic);
+
+        holder.profilePic.setImageURI(Uri.parse(model.getAvatarUrl()));
         if(model.getUserId().equals(FirebaseUtil.CurrentUserId())){
             holder.usernameText.setText(model.getUsername()+" (Me)");
         }

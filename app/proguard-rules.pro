@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepclassmembers class com.nd3v.chat.ChatActivity$Friend {
+    <init>();
+}
+-keepclassmembers class com.nd3v.chat.ChatActivity$Friend {
+    public *;
+}

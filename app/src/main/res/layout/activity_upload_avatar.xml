@@ -29,8 +29,8 @@
 
     <ImageView
         android:id="@+id/upload_avatar_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerInParent="true"
         android:src="@drawable/cat"
         android:tooltipText="Choose your avatar"

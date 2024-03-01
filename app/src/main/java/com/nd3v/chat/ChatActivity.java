@@ -1,37 +1,33 @@
 package com.nd3v.chat;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.firebase.ui.firestore.SnapshotParser;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.nd3v.chat.adapter.ChatRecycleAdapter;
 import com.nd3v.chat.model.ChatMessageModel;
 import com.nd3v.chat.model.ChatRoomModel;
 import com.nd3v.chat.model.UserModel;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -44,6 +40,7 @@ public class ChatActivity extends AppCompatActivity {
     ImageButton backBtn;
     TextView otherUsername;
     RecyclerView recyclerView;
+    ImageView otherIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,20 +52,23 @@ public class ChatActivity extends AppCompatActivity {
         otherUsername = findViewById(R.id.orther_username_text);
         recyclerView = findViewById(R.id.chat_recycle_view);
         backBtn = findViewById(R.id.chat_back_btn);
-
+        otherIcon = findViewById(R.id.profile_pic_imageview);
+        Picasso.with(getApplicationContext()).load(Uri.parse(otherUser.getAvatarUrl())).into(otherIcon);
         backBtn.setOnClickListener(v ->
         {
             onBackPressed();
         });
         otherUsername.setText(otherUser.getUsername());
-        getOrCreateChatRoolModel();
+        getOrCreateChatRoomModel();
         sendBtn.setOnClickListener(v ->
         {
             String mess = messengeInput.getText().toString().trim();
             if(mess.length() == 0) return;
             sendMessageToChatRoom(mess);
         });
+
         setChatRecycleView();
+        addOrUpdateFriend();
     }
     private  void sendMessageToChatRoom(String message)
     {
@@ -85,7 +85,18 @@ public class ChatActivity extends AppCompatActivity {
 
         });
     }
-    void getOrCreateChatRoolModel()
+    void addOrUpdateFriend()
+    {
+        Friend fr = new Friend();
+        fr.userId = otherUser.getUserId();
+        fr.isBestFriend = false;
+        fr.userName = otherUser.getUsername();
+        fr.avatarUrl = "https://firebasestorage.googleapis.com/v0/b/privatechat-30fe3.appspot.com/o/normal_avatar.png?alt=media&token=7ab3f3ff-e275-459f-b603-2a62b67478c0";
+        FirebaseFirestore.getInstance().collection("users").document(FirebaseUtil.CurrentUserId()).collection("friends").document(otherUser.getUserId()).set(fr);
+        fr.userId = FirebaseUtil.CurrentUserId();
+        FirebaseFirestore.getInstance().collection("users").document(otherUser.getUserId()).collection("friends").document(fr.userId).set(fr);
+    }
+    void getOrCreateChatRoomModel()
     {
         FirebaseUtil.getChatRoomReference(chatRoolId).get().addOnCompleteListener(task ->
         {
@@ -133,5 +144,18 @@ public class ChatActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         adapter.startListening();
+    }
+    public class  Friend
+    {
+        public String userId = "";
+        public Boolean isBestFriend = false;
+        public String avatarUrl = "";
+        public  String userName = "";
+        public  Friend(){
+            this.userId = "";
+            this.isBestFriend = false;
+            this.avatarUrl = "";
+            this.userName = "";
+        }
     }
 }
