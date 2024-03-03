@@ -77,20 +77,21 @@
         <com.hbb20.CountryCodePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:ccp_textSize="15sp"
+            app:ccp_textSize="17sp"
             app:ccp_showNameCode="false"
             android:id="@+id/login_country_code"/>
+
         <EditText
+            android:id="@+id/login_mobile_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:elevation="5dp"
-            android:hint="(+84)3456789"
-            android:textSize="20dp"
+            android:hint=" (+84)123456789"
             android:padding="5dp"
-            android:id="@+id/login_mobile_number"/>
+            android:textSize="20dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,6 +111,7 @@
             android:id="@+id/send_otp_btn"/>
         <ProgressBar
             android:layout_width="32dp"
+            android:indeterminateTint="@color/my_primary"
             android:layout_height="wrap_content"
             android:id="@+id/login_phone_progress_bar"/>
     </LinearLayout>

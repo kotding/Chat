@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ChatFragment">
+
+    <TextView
+        android:id="@+id/tw_notifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text=""
+        android:textColor="#737272"
+        android:textSize="18sp" />
+    <ImageView
+        android:id="@+id/lg"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:src="@drawable/ftc"
+
+        android:layout_height="130dp"/>
+
+    <TextView
+        android:id="@+id/tw_duan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/lg"
+
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-black"
+        android:text=" Đề tài: Ứng dụng nhắn tin\n Nhóm : \n Thành Viên: \n\t MÈ QUANG LINH - 22CDTT0017 - Bắc Giang\n\t NGUYỄN TRONG ĐẠI - 22CDTT0017 - Ninh Bình\n Lớp: 22CĐTT02\n Trường cao đẳng ngoại ngữ và công nghệ Hà Nội ">
+
+    </TextView>
+</RelativeLayout>
