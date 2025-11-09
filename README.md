@@ -50,7 +50,9 @@ Users can easily create an account, find friends, and start conversations — al
 <img width="300" alt="Screenshot_20251106_233853" src="https://github.com/user-attachments/assets/366cac59-e310-481a-b7c0-6db02e1d28f3" />
 <img width="300"  alt="Screenshot_20251106_233900" src="https://github.com/user-attachments/assets/fb09d1be-e960-4bd6-b46d-bd4b127db860" />
 <img width="300"  alt="Screenshot_20251106_233936" src="https://github.com/user-attachments/assets/1e97c55f-9811-4427-9736-756891f8705f" />
+<img width="300"  alt="Screenshot_20251106_234043" src="https://github.com/user-attachments/assets/36308a3a-591f-4d0e-85bc-f6239399f49f" />
 <img width="300"  alt="Screenshot_20251106_234132" src="https://github.com/user-attachments/assets/6fc4cbcd-8032-4e5f-bf40-cfbefc03dbc6" />
+<img width="300"  alt="Screenshot_20251106_234148" src="https://github.com/user-attachments/assets/1c9bd665-6f8b-4a97-a917-aa6bd02481db" />
 <img width="300"  alt="Screenshot_20251106_234245" src="https://github.com/user-attachments/assets/12e5a330-670e-4344-b5ba-28da68769048" />
 </p>
 
